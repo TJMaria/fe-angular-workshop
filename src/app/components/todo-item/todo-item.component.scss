@@ -1,0 +1,22 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+
+    width: 240px;
+    height: 32px;
+    padding: 8px 16px;
+    margin: 8px;
+
+    border: 1px solid whitesmoke;
+    border-radius: 6px;
+
+    background-color: #366ba1;
+
+    .todo-name {
+        color: #cddeee;
+    }
+
+    &:hover{
+        border: 2px solid orange;
+    }
+}

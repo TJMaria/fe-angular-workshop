@@ -1,0 +1,7 @@
+@import "../../../mixins";
+
+.list-container{
+    @include absoluteCenter();
+    
+    top: 24px;
+}
