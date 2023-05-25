@@ -1,0 +1,31 @@
+@import "../../../mixins";
+
+.add-modal {
+    $padding: 12px;
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: $padding;
+
+    height: 120px;
+    width: 300px;
+
+    background-color: lightgray;
+    border: solid 1px grey;
+
+    textarea {
+        position: relative;
+        resize: none;
+        width: calc(100% - 2 * $padding);
+        margin: 12px;
+    }
+    .buttons{
+        @include absoluteCenter();
+        button{
+            margin-inline: 8px;
+        }
+    }
+}

@@ -1,6 +1,9 @@
-<div class="list-container">
-    <tda-todo-item *ngFor="let todo of todos; trackBy: trackByFn" 
-                    [name]="todo.name" 
-                    [id]="todo.id">
-    </tda-todo-item>
+<div class="container">
+    <div class="list-container">
+        <tda-todo-item *ngFor="let todo of todos; trackBy: trackByFn" [name]="todo.name" [id]="todo.id">
+        </tda-todo-item>
+    </div>
+
+    <tda-add-modal *ngIf="adding" (close)="handleModalEvent($event)"></tda-add-modal>
+    <tda-add-button (click)="handleClick()"></tda-add-button>
 </div>

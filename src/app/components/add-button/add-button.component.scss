@@ -1,0 +1,38 @@
+.add-button {
+    $size: 40px;
+    $inner-color: white;
+
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+
+    height: $size;
+    width: $size;
+
+    padding: 8px;
+
+    background-color: lightgray;
+    border-radius: 50%;
+
+
+    &::before, &::after {
+        content: '';
+        display: block;
+        height: $size;
+        width: $size; 
+    }
+    
+    &::before {
+        border-right: solid 4px $inner-color;
+        transform: translateX(-50%);
+    }
+    &::after {
+        border-top: solid 4px $inner-color;
+        transform: translateY(-50%);
+    }
+
+    &:hover, &:active {
+        background-color: #6699CC;
+    }
+
+}
