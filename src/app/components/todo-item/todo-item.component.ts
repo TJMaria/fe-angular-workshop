@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Todo } from 'src/app/model/todo';
+import { TodoStateService } from 'src/app/services/todo-state-service.service';
 
 @Component({
   selector: 'tda-todo-item',
@@ -15,13 +17,14 @@ export class TodoItemComponent {
 
   active = false;
 
-  @Output()
-  clicked: EventEmitter<void> = new EventEmitter();
+  constructor(private todoService: TodoStateService) {
+  }
 
   handleClick() {
     this.active = !this.active;
     console.log(this.active);
-    this.clicked.emit();
+    const {id, name} = this;
+    this.todoService.handleSelectEvent({id, name} as Todo);
   }
 
 }
