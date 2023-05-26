@@ -8,11 +8,12 @@
     margin: 8px;
 
     border: 1px solid whitesmoke;
-    border-radius: 6px;
+    border-radius: var(--border-radius);
 
     background-color: #366ba1;
 
     .todo-name {
+        border-radius: var(--border-radius);
         color: #cddeee;
     }
 
