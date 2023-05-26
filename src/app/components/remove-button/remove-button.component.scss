@@ -1,10 +1,10 @@
-.add-button {
+.remove-button {
     $size: 40px;
     $inner-color: white;
 
     position: absolute;
     bottom: 5%;
-    right: 5%;
+    left: 5%;
 
     height: $size;
     width: $size;
@@ -22,17 +22,13 @@
         width: $size; 
     }
     
-    &::before {
-        border-right: solid 4px $inner-color;
-        transform: translateX(-50%);
-    }
     &::after {
         border-top: solid 4px $inner-color;
         transform: translateY(-50%);
     }
 
     &:hover {
-        background-color: var(--pos-color);
+        background-color: var(--neg-color);
     }
 
 }

@@ -6,6 +6,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { AddModalComponent } from './components/add-modal/add-modal.component';
+import { RemoveButtonComponent } from './components/remove-button/remove-button.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AddModalComponent } from './components/add-modal/add-modal.component';
     TodoListComponent,
     TodoItemComponent,
     AddButtonComponent,
-    AddModalComponent
+    AddModalComponent,
+    RemoveButtonComponent
   ],
   imports: [
     BrowserModule

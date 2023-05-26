@@ -5,5 +5,6 @@
     </div>
 
     <tda-add-modal *ngIf="adding" (close)="handleModalEvent($event)"></tda-add-modal>
-    <tda-add-button (click)="handleClick()"></tda-add-button>
+    <tda-remove-button (click)="handleRemoveClick()"></tda-remove-button>
+    <tda-add-button (click)="handleAddClick()"></tda-add-button>
 </div>
