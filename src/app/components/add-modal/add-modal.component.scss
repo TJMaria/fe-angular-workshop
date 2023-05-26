@@ -30,10 +30,10 @@
 
         button {
             &:first-of-type {
-                background-color: var(--neg-color);
+                background-color: var(--neg-color-opacity);
             }
             &:last-of-type {
-                background-color: var(--pos-color);
+                background-color: var(--pos-color-opacity);
             }
             margin-inline: 8px;
 

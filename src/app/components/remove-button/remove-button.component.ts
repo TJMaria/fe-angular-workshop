@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'tda-remove-button',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./remove-button.component.scss']
 })
 export class RemoveButtonComponent {
-
+  @Input()
+  active = false;
 }

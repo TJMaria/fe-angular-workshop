@@ -8,6 +8,8 @@
  
 
     --border-radius: 6px;
-    --neg-color: rgba(240, 128, 128, 0.27);
-    --pos-color: rgba(32, 178, 132, 0.2);
+    --neg-color-opacity: rgba(240, 128, 128, 0.27);
+    --neg-color: rgba(240, 128, 128, 0.9);
+    --pos-color-opacity: rgba(32, 178, 132, 0.2);
+    --pos-color: rgba(32, 178, 132, 0.8);
 }

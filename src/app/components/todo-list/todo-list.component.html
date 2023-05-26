@@ -1,10 +1,17 @@
 <div class="container">
     <div class="list-container">
-        <tda-todo-item *ngFor="let todo of todos; trackBy: trackByFn" [name]="todo.name" [id]="todo.id">
+        <tda-todo-item *ngFor="let todo of todos; index as i; trackBy: trackByFn" 
+            [name]="todo.name" 
+            [id]="todo.id"
+            (clicked)="selectTodo(i)"
+            >
         </tda-todo-item>
     </div>
 
     <tda-add-modal *ngIf="adding" (close)="handleModalEvent($event)"></tda-add-modal>
-    <tda-remove-button (click)="handleRemoveClick()"></tda-remove-button>
-    <tda-add-button (click)="handleAddClick()"></tda-add-button>
+    <tda-remove-button class="todo-button" (click)="handleRemoveClick()" 
+        [class.inactive]="!!!(canRemove$ | async)"
+        [active]="!!(canRemove$ | async)"
+    ></tda-remove-button>
+    <tda-add-button class="todo-button" (click)="handleAddClick()"></tda-add-button>
 </div>

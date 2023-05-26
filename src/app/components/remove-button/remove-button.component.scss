@@ -27,8 +27,7 @@
         transform: translateY(-50%);
     }
 
-    &:hover {
+    &.active {
         background-color: var(--neg-color);
     }
-
 }

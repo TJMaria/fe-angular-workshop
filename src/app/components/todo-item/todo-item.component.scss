@@ -17,7 +17,8 @@
         color: #cddeee;
     }
 
-    &:hover{
+    &:hover, &.active{
         border: 2px solid orange;
     }
+    
 }

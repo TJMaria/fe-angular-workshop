@@ -5,6 +5,15 @@
     margin: 8px;
 
     height: min(600px, 95vh);
+    width: 300px;
 
     top: 24px;
+}
+
+.todo-button {
+    cursor: pointer;
+
+    &.inactive {
+        pointer-events: none;
+    }
 }
