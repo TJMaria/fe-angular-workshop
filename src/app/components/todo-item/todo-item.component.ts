@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Todo } from 'src/app/model/todo';
 import { TodoStateService } from 'src/app/services/todo-state-service.service';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'tda-todo-item',
@@ -23,8 +24,8 @@ export class TodoItemComponent {
   handleClick() {
     this.active = !this.active;
     console.log(this.active);
-    const {id, name} = this;
-    this.todoService.handleSelectEvent({id, name} as Todo);
+    const { id, name } = this;
+    this.todoService.handleSelectEvent({ id, name } as Todo);
   }
 
 }

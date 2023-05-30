@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'tda-add-modal',
@@ -10,7 +11,18 @@ export class AddModalComponent {
   @Output()
   close: EventEmitter<string> = new EventEmitter();
 
-  handleClose(text?: string): void{
-    this.close.emit(text);
+  constructor(private supabaseService: SupabaseService) {
+  }
+
+  async handleClose(text?: string): Promise<void> {
+    if (text) {
+      this.supabaseService.addTodo(text).then(resp => {
+        if (!resp.error) {
+          this.close.emit(text);
+        }
+      });
+    } else {
+      this.close.emit(text);
+    }
   }
 }

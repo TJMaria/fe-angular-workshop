@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Todo } from 'src/app/model/todo';
 import { TodoStateService } from 'src/app/services/todo-state-service.service';
 

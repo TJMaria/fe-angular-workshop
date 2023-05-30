@@ -1,0 +1,40 @@
+.login-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.5);
+  position: fixed;
+}
+
+.login-form {
+  position: absolute;
+  width: 240px;
+  height: 160px;
+
+  background-color: lightgray;
+  border: 1px solid gray;
+  padding: 8px;
+  border-radius: var(--border-radius);
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -25%);
+
+  h2 {
+    margin-inline: auto;
+    width: 95%;
+  }
+
+  button, input {
+    display: block;
+    margin: 4px;
+    margin-inline: auto;
+    width: 80px;
+    padding: 4px;
+  }
+
+  input {
+    border: none;
+    padding: 4px;
+    width: 180px;
+  }
+}
+

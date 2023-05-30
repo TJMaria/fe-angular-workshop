@@ -7,6 +7,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { AddModalComponent } from './components/add-modal/add-modal.component';
 import { RemoveButtonComponent } from './components/remove-button/remove-button.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RemoveButtonComponent } from './components/remove-button/remove-button.
     TodoItemComponent,
     AddButtonComponent,
     AddModalComponent,
-    RemoveButtonComponent
+    RemoveButtonComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule
