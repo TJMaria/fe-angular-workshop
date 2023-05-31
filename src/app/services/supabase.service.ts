@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PostgrestResponseFailure } from '@supabase/postgrest-js/src/types';
 import {
   AuthChangeEvent,
   AuthError,
@@ -68,22 +69,24 @@ export class SupabaseService {
   }
 
   async addTodo(name: string): Promise<PostgrestSingleResponse<Todo>> {
-    const { data, error } = await this.getSession();
-    const userId = data.session?.user?.id as string;
-    return this.supabaseClient.from('todos').insert({ name, user_id: userId }).single();
+    return this.getSession().then(({ data }) => {
+      const userId = data.session?.user?.id as string;
+      return this.supabaseClient.from('todos').insert({ name, user_id: userId }).single();
+    });
   }
 
   async getSession(): Promise<SessionType> {
     return this.supabaseClient.auth.getSession();
   }
 
-  async deleteTodo(id: string) {
-    const resp = await this.supabaseClient.from('todos').delete().eq('id', id);
-    this.handleError(resp.error);
-    return resp;
+  async deleteTodo(id: string): Promise<PostgrestResponseFailure | PostgrestSingleResponse<null>> {
+    return this.supabaseClient.from('todos').delete().eq('id', id).then(resp => {
+      this.handleError(resp.error);
+      return resp;
+    });
   }
 
-  private handleError(error: null | AuthError | PostgrestError) {
+  private handleError(error: null | AuthError | PostgrestError): void {
     if (error) {
       alert(error.message);
     }

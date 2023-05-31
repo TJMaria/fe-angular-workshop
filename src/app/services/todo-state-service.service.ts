@@ -51,5 +51,4 @@ export class TodoStateService {
     this.todos = _todos;
     this.todos$.next(this.todos);
   }
-
 }
