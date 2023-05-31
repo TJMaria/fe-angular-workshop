@@ -3,7 +3,21 @@
     grid-template-areas: ". todos .";
     grid-template-columns: auto min-content auto;
 
-    .todos{
-        grid-area: todos;
-    }
+  .todos {
+    grid-area: todos;
+    margin-top: 24px;
+  }
+
+  .logout {
+    grid-area: logout;
+    width: max-content;
+    position: fixed;
+
+    right: 4px;
+    top: 4px;
+    border: none;
+    color: gray;
+    padding: 4px;
+    background: none;
+  }
 }

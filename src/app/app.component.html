@@ -1,5 +1,7 @@
 <tda-login-form *ngIf="!(signedIn$ | async); else todolist"></tda-login-form>
 
 <ng-template #todolist>
+  <button class="logout" (click)="logout()">logout</button>
+
   <tda-todo-list class="todos"></tda-todo-list>
 </ng-template>

@@ -8,10 +8,14 @@ import { SupabaseService } from './services/supabase.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'fe-angular-workshop';
+  title = 'web-dev-workshop';
   signedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private supabaseService: SupabaseService) {
     this.supabaseService.authChanges((_e, s) => this.signedIn$.next(!!s));
+  }
+
+  logout() {
+    this.supabaseService.signOut();
   }
 }
