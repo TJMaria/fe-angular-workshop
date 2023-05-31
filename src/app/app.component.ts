@@ -13,9 +13,5 @@ export class AppComponent {
 
   constructor(private supabaseService: SupabaseService) {
     this.supabaseService.authChanges((_e, s) => this.signedIn$.next(!!s));
-    // this.supabaseService.fetchTodos().then(({data, error}) =>{
-    //   console.log(data);
-    //   console.log(error);
-    // });
   }
 }

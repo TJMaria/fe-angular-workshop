@@ -23,7 +23,6 @@ export class TodoListComponent {
   handleModalEvent(name?: string): void {
     this.adding = false;
     if (name) {
-      console.log('add', name);
       this.todoService.handleAdd(name);
     }
   }

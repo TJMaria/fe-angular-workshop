@@ -22,7 +22,6 @@ export class TodoItemComponent {
 
   handleClick() {
     this.active = !this.active;
-    console.log(this.active);
     const { id, name } = this;
     this.todoService.handleSelectEvent({ id, name } as Todo);
   }

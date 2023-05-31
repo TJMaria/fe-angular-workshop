@@ -8,7 +8,6 @@ import { SupabaseService } from './supabase.service';
 })
 export class TodoStateService {
   private selected: Todo[] = [];
-  // private todos: Todo[] = [  { id: 0, name: 'todo 1' }, { id: 1, name: 'todo 2' }, { id: 2, name: 'todo 3' }, { id: 3, name: 'todo 4' }]
   private todos: Todo[] = [];
 
   todos$: BehaviorSubject<Todo[]> = new BehaviorSubject(this.todos);
@@ -29,17 +28,11 @@ export class TodoStateService {
   }
 
   handleRemove() {
-    console.log('remove');
     Promise.all(this.selected.map(({ id }) => this.supabaseService.deleteTodo(id))).then(() => {
       this.updateTodos(this.todos.filter(t => !this.selected.map(s => s.id).includes(t.id)));
       this.updateSelected([]);
     });
   }
-
-  // _handleAdd(name: string){
-  //   const id = ++this.todos.map(t => t.id).sort((a, b) => b - a)[0]
-  //   this.updateTodos([{ id, name }, ...this.todos])
-  // }
 
   handleAdd(name: string) {
     this.supabaseService.addTodo(name).then(({ error }) => {

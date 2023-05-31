@@ -35,9 +35,7 @@ export class SupabaseService {
 
   constructor() {
     this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseAnonKey);
-    console.log(this.supabaseClient.auth);
   }
-
 
   signIn(email: string, password: string) {
     return this.supabaseClient.auth.signInWithPassword({ email, password });
@@ -51,15 +49,11 @@ export class SupabaseService {
     return this.supabaseClient.auth.onAuthStateChange(callback);
   }
 
-  _fetchTodos() {
-    return this.supabaseClient.from('todos').select('*').order('id', { ascending: false });
-  }
-
   async fetchTodos(): Promise<Todo[]> {
     const { data, error } = await this.supabaseClient.from('todos').select('*').order('id', { ascending: false });
 
-    if(error) {
-      alert(error.message)
+    if (error) {
+      alert(error.message);
     }
 
     return (data || []) as unknown as Todo[];
@@ -88,8 +82,8 @@ export class SupabaseService {
   async deleteTodo(id: string) {
     const resp = await this.supabaseClient.from('todos').delete().eq('id', id);
 
-    if(resp.error) {
-      alert(resp.error?.message)
+    if (resp.error) {
+      alert(resp.error?.message);
     }
 
     return resp;
