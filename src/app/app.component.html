@@ -1,11 +1,5 @@
-<tda-todo-list class="todos"></tda-todo-list>
+<tda-login-form *ngIf="!(signedIn$ | async); else todolist"></tda-login-form>
 
-<tda-login-form *ngIf="!(signedIn$ | async)"></tda-login-form>
-<!--<div ngNoForm *ngIf="!(signedIn$ | async)" class="log-form" (keydown)="handleLogin(user.value, pass.value, $event)">-->
-<!--&lt;!&ndash;  <form>&ndash;&gt;-->
-<!--    <h2>Login to your account</h2>-->
-<!--    <input #user type="text" title="username" placeholder="username"/>-->
-<!--    <input #pass type="password" title="username" placeholder="password"/>-->
-<!--    <button type="submit" class="btn" (click)="handleLogin(user.value, pass.value)">Login</button>-->
-<!--&lt;!&ndash;  </form>&ndash;&gt;-->
-<!--</div>-->
+<ng-template #todolist>
+  <tda-todo-list class="todos"></tda-todo-list>
+</ng-template>

@@ -13,6 +13,7 @@ export class TodoListComponent {
   trackByFn = (_index: number, todo: Todo) => todo.id;
 
   constructor(public todoService: TodoStateService) {
+    todoService.getTodos();
   }
 
   handleAddClick(): void {

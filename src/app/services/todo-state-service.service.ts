@@ -16,11 +16,9 @@ export class TodoStateService {
   hasSelection$: Observable<boolean> = this.selected$.pipe(map(sel => sel.length > 0));
 
   constructor(private supabaseService: SupabaseService) {
-
-    this.getTodos();
   }
 
-  private getTodos() {
+  public getTodos() {
     this.supabaseService.fetchTodos().then((todos) => this.updateTodos(todos));
   }
 
