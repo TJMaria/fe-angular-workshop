@@ -16,11 +16,7 @@ export class LoginFormComponent {
       return;
     }
 
-    this.supabaseService.signIn(user, pass).then(({ data, error }) => {
-      if (error) {
-        alert(error);
-      }
-    });
+    this.supabaseService.signIn(user, pass);
   }
 
 }

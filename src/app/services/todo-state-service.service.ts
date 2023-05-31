@@ -18,7 +18,7 @@ export class TodoStateService {
   }
 
   public getTodos() {
-    this.supabaseService.fetchTodos().then((todos) => this.updateTodos(todos));
+    this.supabaseService.fetchTodos().subscribe((todos) => this.updateTodos(todos));
   }
 
   handleSelectEvent(todo: Todo) {

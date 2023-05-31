@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AuthChangeEvent, AuthError, createClient, Session, SupabaseClient } from '@supabase/supabase-js';
+import {
+  AuthChangeEvent,
+  AuthError,
+  createClient,
+  PostgrestError,
+  PostgrestSingleResponse,
+  Session,
+  SupabaseClient
+} from '@supabase/supabase-js';
+import { from, map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Todo } from '../model/todo';
 
@@ -37,33 +46,30 @@ export class SupabaseService {
     this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseAnonKey);
   }
 
-  signIn(email: string, password: string) {
-    return this.supabaseClient.auth.signInWithPassword({ email, password });
+  signIn(email: string, password: string): void {
+    this.supabaseClient.auth.signInWithPassword({ email, password }).then(({ error }) => this.handleError(error));
   }
 
-  signOut() {
+  signOut(): void {
     this.supabaseClient.auth.signOut().catch(console.error);
   }
 
-  authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void) {
-    return this.supabaseClient.auth.onAuthStateChange(callback);
+  authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void): void {
+    this.supabaseClient.auth.onAuthStateChange(callback);
   }
 
-  async fetchTodos(): Promise<Todo[]> {
-    const { data, error } = await this.supabaseClient.from('todos').select('*').order('id', { ascending: false });
-
-    if (error) {
-      alert(error.message);
-    }
-
-    return (data || []) as unknown as Todo[];
+  fetchTodos(): Observable<Todo[]> {
+    return from(this.supabaseClient.from('todos').select('*').order('id', { ascending: false })).pipe(
+      map(({ data, error }) => {
+        this.handleError(error);
+        return (data || []) as unknown as Todo[];
+      })
+    );
   }
 
-  async addTodo(name: string) {
+  async addTodo(name: string): Promise<PostgrestSingleResponse<Todo>> {
     const { data, error } = await this.getSession();
-    const { session } = data;
-
-    const userId = session?.user?.id as string;
+    const userId = data.session?.user?.id as string;
     return this.supabaseClient.from('todos').insert({ name, user_id: userId }).single();
   }
 
@@ -71,21 +77,15 @@ export class SupabaseService {
     return this.supabaseClient.auth.getSession();
   }
 
-  // toggleComplete(id: string, isCompleted: boolean) {
-  //   return this.supabaseClient
-  //              .from('todos')
-  //              .update({ is_complete: !isCompleted })
-  //              .eq('id', id)
-  //              .single();
-  // }
-
   async deleteTodo(id: string) {
     const resp = await this.supabaseClient.from('todos').delete().eq('id', id);
-
-    if (resp.error) {
-      alert(resp.error?.message);
-    }
-
+    this.handleError(resp.error);
     return resp;
+  }
+
+  private handleError(error: null | AuthError | PostgrestError) {
+    if (error) {
+      alert(error.message);
+    }
   }
 }
