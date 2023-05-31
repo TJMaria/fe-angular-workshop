@@ -1,4 +1,8 @@
 export interface Todo {
-    id: number;
-    name: string;
+  name: string;
+  id: string;
+
+  inserted_at?: string;
+  is_complete?: boolean;
+  user_id?: string;
 }

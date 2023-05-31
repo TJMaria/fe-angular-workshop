@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Todo } from 'src/app/model/todo';
 import { TodoStateService } from 'src/app/services/todo-state-service.service';
-import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'tda-todo-item',
@@ -11,7 +10,7 @@ import { SupabaseService } from '../../services/supabase.service';
 export class TodoItemComponent {
 
   @Input()
-  id: number = -1;
+  id: string = '';
 
   @Input()
   name: string = '';

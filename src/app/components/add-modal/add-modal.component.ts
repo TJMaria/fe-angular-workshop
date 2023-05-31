@@ -14,15 +14,7 @@ export class AddModalComponent {
   constructor(private supabaseService: SupabaseService) {
   }
 
-  async handleClose(text?: string): Promise<void> {
-    if (text) {
-      this.supabaseService.addTodo(text).then(resp => {
-        if (!resp.error) {
-          this.close.emit(text);
-        }
-      });
-    } else {
-      this.close.emit(text);
-    }
+  handleClose(text?: string) {
+    this.close.emit(text);
   }
 }

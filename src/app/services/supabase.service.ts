@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthChangeEvent, AuthError, createClient, Session, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
+import { Todo } from '../model/todo';
 
 type SessionType = { data: { session: Session }; error: null } | { data: { session: null }; error: AuthError } | {
   data: { session: null };
@@ -31,24 +32,16 @@ type SessionType = { data: { session: Session }; error: null } | { data: { sessi
 })
 export class SupabaseService {
   private supabaseClient: SupabaseClient;
-  token: string | undefined;
 
   constructor() {
     this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseAnonKey);
     console.log(this.supabaseClient.auth);
   }
 
-  signUp(email: string, password: string) {
-    return this.supabaseClient.auth.signUp({ email, password });
-  }
 
   signIn(email: string, password: string) {
     return this.supabaseClient.auth.signInWithPassword({ email, password });
   }
-
-  // signInWithProvider(provider: Provider) {
-  //   return this.supabaseClient.auth.sign({ provider })
-  // }
 
   signOut() {
     this.supabaseClient.auth.signOut().catch(console.error);
@@ -58,18 +51,18 @@ export class SupabaseService {
     return this.supabaseClient.auth.onAuthStateChange(callback);
   }
 
-  resetPassword(email: string) {
-    return this.supabaseClient.auth.resetPasswordForEmail(email);
-  }
-
-  handleNewPassword(newPassword: string) {
-    return this.supabaseClient.auth.updateUser({
-      password: newPassword
-    });
-  }
-
-  fetchTodos() {
+  _fetchTodos() {
     return this.supabaseClient.from('todos').select('*').order('id', { ascending: false });
+  }
+
+  async fetchTodos(): Promise<Todo[]> {
+    const { data, error } = await this.supabaseClient.from('todos').select('*').order('id', { ascending: false });
+
+    if(error) {
+      alert(error.message)
+    }
+
+    return (data || []) as unknown as Todo[];
   }
 
   async addTodo(name: string) {
@@ -84,15 +77,21 @@ export class SupabaseService {
     return this.supabaseClient.auth.getSession();
   }
 
-  toggleComplete(id: string, isCompleted: boolean) {
-    return this.supabaseClient
-               .from('todos')
-               .update({ is_complete: !isCompleted })
-               .eq('id', id)
-               .single();
-  }
+  // toggleComplete(id: string, isCompleted: boolean) {
+  //   return this.supabaseClient
+  //              .from('todos')
+  //              .update({ is_complete: !isCompleted })
+  //              .eq('id', id)
+  //              .single();
+  // }
 
-  deleteTodo(id: string) {
-    return this.supabaseClient.from('todos').delete().eq('id', id);
+  async deleteTodo(id: string) {
+    const resp = await this.supabaseClient.from('todos').delete().eq('id', id);
+
+    if(resp.error) {
+      alert(resp.error?.message)
+    }
+
+    return resp;
   }
 }
