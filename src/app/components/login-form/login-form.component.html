@@ -1,10 +1,6 @@
-<div class="login-background">
-</div>
-<div class="login-form" (keydown)="handleLogin(user.value, pass.value, $event)">
+<div class="login-form">
   <h2>Login to your account</h2>
-
-    <input #user type="text" title="username" placeholder="username"/>
-    <input #pass type="password" title="username" placeholder="password"/>
+    <input #user type="text" placeholder="username"/>
+    <input #pass type="password" placeholder="password"/>
     <button type="submit" class="btn" (click)="handleLogin(user.value, pass.value)">Login</button>
 </div>
-

@@ -1,0 +1,12 @@
+{
+    "/todos": {
+        "target": "https://mlbsoghivwnwczaznsxs.supabase.co/rest/v1/",
+        "secure": true,
+        "changeOrigin": true
+      }, 
+      "/network-restrictions": {
+        "target": "https://mlbsoghivwnwczaznsxs.supabase.co/rest/v1/projects/mlbsoghivwnwczaznsxs/",
+        "secure": true,
+        "changeOrigin": true
+      }
+  }

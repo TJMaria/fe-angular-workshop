@@ -18,7 +18,9 @@ export class TodoStateService {
   }
 
   public getTodos() {
-    this.supabaseService.fetchTodos().subscribe((todos) => this.updateTodos(todos));
+    this.supabaseService.fetchTodos().then((todos) => this.updateTodos(todos));
+    // this.supabaseService.getTodos().subscribe((todos) => console.log('yay', todos));
+    // this.supabaseService.networkRestrictions();
   }
 
   handleSelectEvent(todo: Todo) {

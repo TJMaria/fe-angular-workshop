@@ -8,6 +8,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RemoveButtonComponent } from './components/remove-button/remove-button.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,10 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
     AddModalComponent,
     RemoveButtonComponent,
     LoginFormComponent
-  ],
+    ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
